@@ -46,6 +46,6 @@ Identify customer segments based on engagement and purchasing behavior.
 
 ## Author
 
-Igor Lopes51 
+Igor Lopes
 
 MS in Business Analytics and Project Management (UConn)
