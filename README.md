@@ -1,51 +1,48 @@
-# Digital Marketing Analytics Portfolio
+Digital Marketing Campaigns: What Drives Conversion?
+Statistical analysis and machine learning on 8,000 customers from digital marketing campaigns. It identifies which campaign and customer factors are associated with conversion, segments customers by engagement, and predicts who will not convert, with honest evaluation on imbalanced data.
 
-This repository contains marketing analytics projects developed using Python, SQL, Machine Learning and Customer Segmentation techniques.
+Tools: Python (pandas, SciPy, scikit-learn), SQL (SQLite) Methods: chi-square tests, Mann-Whitney U, effect sizes (Cohen's d), engagement segmentation, logistic regression, random forest, cross-validation
 
-## Project 1: Conversion Analysis6 
+📓 Notebook · 🗄️ SQL queries
 
-### Objective8Analyze the factors associated with customer conversion and evaluate predictive machine learning models.
+Business question
+Which campaign types, channels and customer behaviours are associated with conversion? Can non-converters be flagged early so follow-up spend is targeted?
 
-### Tools
-- Python
-- Pandas
-- Seaborn
-- Scikit-Learn
-- SQLite1
-
-### Models
-
-- Logistic Regression
-- 19- Decision Tree
-
-### Key Findings
-- Customer behavior was more important than demographic variables.
-- PreviousPurchases, PagesPerVisit and ClickThroughRate were key conversion drivers.
-- Decision Tree provided more balanced performance.
+Key results
+Finding	Evidence
+Campaign type matters	"Conversion" campaigns convert 93.4% vs about 86% for the other types (χ² p < 0.001)
+Channel doesn't	86.8%–88.3% across Email, PPC, Referral, SEO and Social. Not significant (p = 0.59)
+Behaviour beats demographics	Time on site, email clicks/opens, ad spend and past purchases differ most (Cohen's d ≈ 0.3–0.4). Age and income don't differ
+Engagement segments	Conversion rises from 79% (low engagement) to 94% (high)
+Prediction	Random forest ROC-AUC 0.79 (CV 0.82); catches 55% of non-converters vs 0% for the baseline
 
 
-## Project 2: Customer Segmentation
+ 
 
-### Objective
-Identify customer segments based on engagement and purchasing behavior.
+Why accuracy alone is misleading here
+88% of customers convert, so a model that always predicts "converts" scores 88% accuracy while catching zero non-converters. Models here are trained with balanced class weights and compared on ROC-AUC and on recall for non-converters:
 
-### Segments34
-- Low Engagement35
-- Medium Engagement36
-- High Engagement
+Model	Accuracy	Test AUC	Non-converters caught	Precision
+Baseline (always "converts")	87.6%	0.50	0%	–
+Logistic regression	73.6%	0.77	72%	28%
+Random forest	88.3%	0.79	55%	53%
+ConversionRate is excluded from the features because it is itself a conversion outcome. Including it would make the model circular.
 
-### Key Findings
-- High Engagement customers had the highest conversion rate (92.2%).
-- Low Engagement customers had the lowest conversion rate (80.8%).
-- Higher engagement levels were associated with higher conversion rates.
+Recommendations
+Prioritize conversion-focused campaign types. They're about 8 points ahead of the others.
+Don't reallocate budget across channels on these results. The differences are within random variation.
+Invest in engagement. Email nurture and on-site content can lift low-engagement customers, who convert 15 points less.
+Score customers before a campaign closes and send follow-up offers to likely non-converters.
+Data
+Predict Conversion in Digital Marketing (Kaggle). It has 8,000 customers and 20 variables covering demographics, campaign, engagement and loyalty. Limitation: the dataset is synthetic and has no timestamps, so results show the method and describe associations, not causes.
 
-### Recommendations
-- Prioritize conversion campaigns for highly engaged customers.
-- Develop nurture campaigns for medium-engagement customers.
-- Create re-engagement campaigns for low-engagement customers.
+The data is not included. Download the CSV into data/ to run the notebook.
 
-## Author
-
-Igor Lopes
-
-MS in Business Analytics and Project Management (UConn)
+Repository structure
+├── README.md
+├── notebooks/conversion_analysis.ipynb
+├── sql/conversion_analysis.sql
+├── figures/
+├── data/            # place the Kaggle CSV here (not tracked)
+└── requirements.txt
+Igor M. Lopes, CAPM® · MS Business Analytics & Project Management, University of Connecticut · LinkedIn · Kaggle
