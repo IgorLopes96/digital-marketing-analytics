@@ -5,7 +5,7 @@ Statistical analysis and machine learning on 8,000 customers from digital market
 **Tools:** Python (pandas, SciPy, scikit-learn), SQL (SQLite)
 **Methods:** chi-square tests, Mann-Whitney U, effect sizes (Cohen's d), engagement segmentation, logistic regression, random forest, cross-validation
 
-📓 [Notebook](notebooks/conversion_analysis.ipynb) · 🗄️ [SQL queries](sql/conversion_analysis.sql)
+📓 [Notebook](notebooks/conversion_analysis.ipynb) · 🗄️ [SQL queries](sql/conversion_analysis.sql) · 🔗 [Kaggle version](https://www.kaggle.com/code/igormlopes/predict-conversion-digital-marketing)
 
 ---
 
